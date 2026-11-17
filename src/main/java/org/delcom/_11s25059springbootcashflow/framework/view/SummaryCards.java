@@ -51,8 +51,8 @@ final class SummaryCards extends HorizontalLayout {
         caption.getStyle()
                 .set("display", "block")
                 .set("font-size", "0.875rem")
-                .set("font-weight", "500")
-                .set("color", accent);
+                .set("font-weight", "600")
+                .set("color", valueColor);
 
         value.getStyle()
                 .set("display", "block")

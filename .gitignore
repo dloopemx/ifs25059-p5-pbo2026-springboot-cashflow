@@ -36,6 +36,7 @@ package-lock.json
 yarn.lock
 bun.lockb
 .vaadin/
+.vaadin-node-tasks.lock
 
 ### Database / H2 ###
 *.mv.db

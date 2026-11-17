@@ -6,6 +6,7 @@ import org.delcom._11s25059springbootcashflow.domain.repository.IUserRepository;
 import org.delcom._11s25059springbootcashflow.usecase.AuthUseCase;
 import org.delcom._11s25059springbootcashflow.usecase.FinanceUseCase;
 import org.delcom._11s25059springbootcashflow.usecase.UserUseCase;
+import com.vaadin.flow.server.AppShellSettings;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -68,5 +71,13 @@ class AppTest {
                     any(String[].class)
             ));
         }
+    }
+
+    @Test
+    void configurePageAddsSeoMetaTags() {
+        AppShellSettings settings = mock(AppShellSettings.class);
+        new App().configurePage(settings);
+        verify(settings).addMetaTag(eq("description"), startsWith("Cashflow"));
+        verify(settings).addMetaTag("theme-color", "#1D4ED8");
     }
 }

@@ -50,6 +50,7 @@ public class UserTransactionsView extends VerticalLayout
         this.summaryCards = new SummaryCards(presenter);
 
         setSizeFull();
+        getElement().setAttribute("role", "main");
         setPadding(true);
         setSpacing(false);
         getStyle().set("background", "#F3F4F6");

@@ -2,6 +2,7 @@ package org.delcom._11s25059springbootcashflow;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.SpringApplication;
@@ -16,5 +17,12 @@ public class App implements AppShellConfigurator {
     public static void main(String[] args) throws Exception {
         DotEnv.load();
         SpringApplication.run(App.class, args);
+    }
+
+    @Override
+    public void configurePage(AppShellSettings settings) {
+        settings.addMetaTag("description",
+                "Cashflow: aplikasi web pencatat pemasukan, pengeluaran, bukti transaksi, dan saldo keuangan pribadi.");
+        settings.addMetaTag("theme-color", "#1D4ED8");
     }
 }
