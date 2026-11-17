@@ -369,7 +369,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver, AfterN
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         if (AuthSession.currentUser(userRepository).isEmpty()) {
-            if (event.getNavigationTarget() == FinanceView.class) {
+            if (event.getLocation().getPath().isEmpty()) {
                 // "/" adalah halaman publik: tampilkan halaman sambutan tanpa mengubah URL.
                 event.rerouteTo(LandingView.class);
             } else {

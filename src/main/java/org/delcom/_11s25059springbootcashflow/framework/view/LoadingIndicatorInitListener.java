@@ -12,6 +12,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoadingIndicatorInitListener implements VaadinServiceInitListener {
 
+    private static final String INITIAL_SHELL = """
+            <main id="app-initial-shell" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;\
+            overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">\
+            <h1>Cashflow - Catatan Keuangan</h1><p>Memuat aplikasi...</p></main>""";
+
+    private static final String INITIAL_SHELL_CLEANUP = """
+            (function () {
+              function done() {
+                var shell = document.getElementById('app-initial-shell');
+                if (!shell) { return true; }
+                var rendered = document.querySelector('main:not(#app-initial-shell), [role="main"]');
+                if (rendered) { shell.remove(); return true; }
+                return false;
+              }
+              if (!done()) {
+                new MutationObserver(function (m, o) { if (done()) { o.disconnect(); } })
+                    .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['role'] });
+              }
+            })();
+            """;
+
     private static final String CONNECTION_INDICATOR_A11Y = """
             (function () {
               function apply() {
@@ -35,6 +56,10 @@ public class LoadingIndicatorInitListener implements VaadinServiceInitListener {
             response.getDocument().selectFirst("html").attr("lang", "id");
             // Indikator koneksi bawaan Vaadin diberi label region agar tidak berada di luar landmark.
             response.getDocument().body().appendElement("script").appendChild(new DataNode(CONNECTION_INDICATOR_A11Y));
+            // Kerangka awal (main + h1) agar halaman sudah valid sebelum Vaadin selesai merender;
+            // dihapus otomatis setelah konten view muncul.
+            response.getDocument().body().prepend(INITIAL_SHELL);
+            response.getDocument().body().appendElement("script").appendChild(new DataNode(INITIAL_SHELL_CLEANUP));
         });
         event.getSource().addUIInitListener(uiEvent -> {
             LoadingIndicatorConfiguration conf = uiEvent.getUI().getLoadingIndicatorConfiguration();

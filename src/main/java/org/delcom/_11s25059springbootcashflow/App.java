@@ -21,6 +21,8 @@ public class App implements AppShellConfigurator {
 
     @Override
     public void configurePage(AppShellSettings settings) {
+        // Judul awal di HTML (sebelum Vaadin merender; @PageTitle tiap view menggantinya).
+        settings.setPageTitle("Cashflow - Catatan Keuangan");
         settings.addMetaTag("description",
                 "Cashflow: aplikasi web pencatat pemasukan, pengeluaran, bukti transaksi, dan saldo keuangan pribadi.");
         settings.addMetaTag("theme-color", "#1D4ED8");

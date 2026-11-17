@@ -79,5 +79,6 @@ class AppTest {
         new App().configurePage(settings);
         verify(settings).addMetaTag(eq("description"), startsWith("Cashflow"));
         verify(settings).addMetaTag("theme-color", "#1D4ED8");
+        verify(settings).setPageTitle("Cashflow - Catatan Keuangan");
     }
 }
