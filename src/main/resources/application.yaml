@@ -38,5 +38,7 @@ app:
 
 vaadin:
   launch-browser: false
+  # UI awal ikut dikirim bersama HTML (hemat satu round-trip saat halaman pertama dimuat).
+  eagerServerLoad: true
   liveReload:
     enabled: true
