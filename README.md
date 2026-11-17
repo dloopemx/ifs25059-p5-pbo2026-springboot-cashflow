@@ -1,12 +1,12 @@
-# 11S25059-p5-pbo2026-springboot-cashflow
+# ifs25059-p5-pbo2026-springboot-cashflow
 
 Aplikasi web **Cashflow (Catatan Keuangan)** berbasis **Spring Boot 4.1.2**, **Maven**, **Vaadin 25.3.4**, dan **JDBC (PostgreSQL)**, dengan arsitektur **Clean Architecture** (domain, usecase, adapter, framework).
 
 | | |
 | --- | --- |
-| Folder | `11S25059-p5-pbo2026-springboot-cashflow` |
-| Artifact Maven | `11S25059-p5-pbo2026-springboot-cashflow` |
-| Package | `org.delcom._11s25059springbootcashflow` |
+| Folder | `ifs25059-p5-pbo2026-springboot-cashflow` |
+| Artifact Maven | `ifs25059-p5-pbo2026-springboot-cashflow` |
+| Package | `org.delcom.ifs25059springbootcashflow` |
 | Database | `pbo2026_cashflow` |
 
 ## Prasyarat
@@ -85,7 +85,7 @@ Akun admin di-seed otomatis saat start dari `ROOT_USERNAME` / `ROOT_PASSWORD`. U
 ## Struktur singkat
 
 ```text
-src/main/java/org/delcom/_11s25059springbootcashflow/
+src/main/java/org/delcom/ifs25059springbootcashflow/
 ├── domain/          # entity (Transaction, TransactionType, Balance, User, Role, SortOption),
 │                    # exception, repository port (IRepository, ITransactionRepository, IUserRepository), PasswordHasher
 ├── usecase/         # AuthUseCase, FinanceUseCase, UserUseCase
@@ -96,17 +96,14 @@ src/main/java/org/delcom/_11s25059springbootcashflow/
 └── App.java
 ```
 
-> Catatan: segmen package Java tidak boleh diawali angka, sehingga username `11S25059`
-> menjadi package `org.delcom._11s25059springbootcashflow` (aturan yang sama dipakai Spring Initializr).
-
 Runtime memakai **JDBC + PostgreSQL**. Unit test repository memakai **InMemory**; tes JDBC memakai **H2**.
 
 ## Menjalankan
 
-Dari direktori proyek `11S25059-p5-pbo2026-springboot-cashflow`:
+Dari direktori proyek `ifs25059-p5-pbo2026-springboot-cashflow`:
 
 ```powershell
-cd 11S25059-p5-pbo2026-springboot-cashflow  # jika berada di root workspace praktikum
+cd ifs25059-p5-pbo2026-springboot-cashflow  # jika berada di root workspace praktikum
 .\mvnw.cmd spring-boot:run
 ```
 
@@ -120,7 +117,7 @@ Jalankan dari **root proyek** agar `.env` terbaca (jika tidak di-override enviro
 
 ```powershell
 .\mvnw.cmd clean package -Pproduction
-java -jar target\11S25059-p5-pbo2026-springboot-cashflow-0.0.1-SNAPSHOT.jar
+java -jar target\ifs25059-p5-pbo2026-springboot-cashflow-0.0.1-SNAPSHOT.jar
 ```
 
 Tanpa `-Pproduction`, menjalankan JAR biasanya gagal (`vaadin-dev-server not found`).
